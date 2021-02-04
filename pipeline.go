@@ -19,7 +19,6 @@ package gojenkins
 
 import (
 	"context"
-	"fmt"
 	"regexp"
 )
 
@@ -157,10 +156,10 @@ func (pr *PipelineRun) GetNode(ctx context.Context, id string) (node *PipelineNo
 	return node, nil
 }
 
-func (pr *PipelineRun) GetConsoleLog(id string) (log string, err error) {
+func (pr *PipelineRun) GetConsoleLog(id string) (string, error) {
 	href := pr.Base + "/execution/node/" + id + "/log"
 	var log string
-	_, err = pr.Job.Jenkins.Requester.GetXML(href, &log, nil)
+	_, err := pr.Job.Jenkins.Requester.GetXML(href, &log, nil)
 	if err != nil {
 		return "", err
 	}
