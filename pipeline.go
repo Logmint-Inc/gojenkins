@@ -156,7 +156,7 @@ func (pr *PipelineRun) GetNode(ctx context.Context, id string) (node *PipelineNo
 	return node, nil
 }
 
-func (pr *PipelineRun) GetConsoleLog(tx context.Context, id string) (string, error) {
+func (pr *PipelineRun) GetConsoleLog(ctx context.Context, id string) (string, error) {
 	href := pr.Base + "/execution/node/" + id + "/log"
 	var log string
 	_, err := pr.Job.Jenkins.Requester.GetXML(ctx, href, &log, nil)
